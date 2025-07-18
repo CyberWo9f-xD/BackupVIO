@@ -35,6 +35,10 @@ function startStreaming() {
   ffmpegProcess.on("close", (code) => {
     console.log(`[FFmpeg] exited with code ${code}`);
     ffmpegProcess = null;
+
+    // Auto-restart stream
+    console.log("🔁 Restarting backup stream in 5 seconds...");
+    setTimeout(startStreaming, 5000);
   });
 }
 
