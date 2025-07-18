@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: backup-stream
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PASSWORD
+        sync: false
+      - key: RTMP_URL
+        sync: false
+      - key: STREAM_KEY
+        sync: false

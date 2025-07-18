@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Backup Stream Control Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #1a1a1a;
+      color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #00ffd0;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px #00ffd0;
+    }
+
+    .control-panel {
+      background: #2a2a2a;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 208, 0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.5rem;
+    }
+
+    input[type="password"] {
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #444;
+      color: #fff;
+    }
+
+    button {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button[type="submit"] {
+      background-color: #00ffd0;
+      color: #000;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #00bfa6;
+    }
+
+    .stop-btn {
+      background-color: #ff4d4d;
+      color: #fff;
+    }
+
+    .stop-btn:hover {
+      background-color: #cc0000;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    @media (max-width: 500px) {
+      .control-panel {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎛️ Backup Stream Control Panel</h1>
+  <div class="control-panel">
+    <form method="POST" action="/control">
+      <input type="hidden" name="action" value="start">
+      <input type="password" name="password" placeholder="🔒 Enter password" required>
+      <button type="submit">▶️ Start Backup Stream</button>
+    </form>
+
+    <form method="POST" action="/control">
+      <input type="hidden" name="action" value="stop">
+      <input type="password" name="password" placeholder="🔒 Enter password" required>
+      <button type="submit" class="stop-btn">⛔ Stop Backup Stream</button>
+    </form>
+  </div>
+
+  <footer>
+    ⚡ Powered by BackupVIO · Secure Streaming Panel
+  </footer>
+</body>
+</html>
