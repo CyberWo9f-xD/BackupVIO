@@ -46,5 +46,5 @@ app.listen(PORT, () => {
   setInterval(() => {
     http.get(`http://localhost:${PORT}/ping`);
     console.log("⏳ Self-ping sent to keep app alive.");
-  }, 14 * 60 * 1000); // 14 minutes
+  }, 5 * 60 * 1000); // every 5 minutes
 });
