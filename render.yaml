@@ -13,3 +13,5 @@ services:
         sync: false
       - key: STREAM_KEY
         sync: false
+      - key: SELF_URL
+        value: https://backup-stream.onrender.com  # 👈 your public Render URL
