@@ -11,21 +11,21 @@ function startStreaming() {
   const rtmpUrl = `${process.env.RTMP_URL}/${process.env.STREAM_KEY}?backup=1`;
 
   ffmpegProcess = spawn("ffmpeg", [
-    "-stream_loop", "-1",           // Loop GIF infinitely
-    "-re",                          // Read input in real-time
-    "-i", gifPath,                  // Input file (GIF)
-    "-an",                          // Disable audio entirely (no need for anullsrc)
-    "-vf", "scale=426:240",         // 240p resolution to reduce bandwidth
+    "-stream_loop", "-1",
+    "-re",
+    "-i", gifPath,
+    "-f", "lavfi",
+    "-i", "anullsrc",
+    "-shortest",
     "-c:v", "libx264",
-    "-preset", "ultrafast",         // Lower CPU usage
-    "-tune", "zerolatency",         // For low latency streaming
-    "-b:v", "300k",                 // Set video bitrate
-    "-maxrate", "300k",
-    "-bufsize", "600k",
-    "-g", "30",                     // GOP size for keyframe every 1 second
-    "-pix_fmt", "yuv420p",          // Required by YouTube
-    "-f", "flv",                    // Output format
-    rtmpUrl                         // YouTube RTMP stream URL
+    "-preset", "ultrafast",
+    "-tune", "zerolatency",
+    "-c:a", "aac",
+    "-b:a", "0k",
+    "-ar", "44100",
+    "-pix_fmt", "yuv420p",
+    "-f", "flv",
+    rtmpUrl,
   ]);
 
   ffmpegProcess.stderr.on("data", (data) => {
@@ -36,6 +36,7 @@ function startStreaming() {
     console.log(`[FFmpeg] exited with code ${code}`);
     ffmpegProcess = null;
 
+    // Auto-restart stream
     console.log("🔁 Restarting backup stream in 5 seconds...");
     setTimeout(startStreaming, 5000);
   });
