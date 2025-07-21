@@ -10,7 +10,7 @@ function startStreaming() {
   const gifPath = path.join(__dirname, "public", "idle.gif");
   const rtmpUrl = `${process.env.RTMP_URL}/${process.env.STREAM_KEY}?backup=1`;
 
-const ffmpegProcess = spawn("ffmpeg", [
+ffmpegProcess = spawn("ffmpeg", [
   "-stream_loop", "-1",            // Infinite loop of GIF
   "-re",                           // Read input in real time
   "-i", gifPath,                   // Input: your GIF
