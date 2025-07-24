@@ -18,7 +18,7 @@ function startStreaming() {
     "-i", "anullsrc",
     "-shortest",
     "-c:v", "libx264",
-    "-b:v", "200k",
+    "-b:v", "100k",
     "-preset", "ultrafast",
     "-tune", "zerolatency",
     "-c:a", "aac",
