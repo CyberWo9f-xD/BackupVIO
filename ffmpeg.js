@@ -23,7 +23,7 @@ function startStreaming() {
     "-tune", "zerolatency",
     "-c:a", "aac",
     "-b:a", "0k",
-    "-pix_fmt", "yuv420p",
+    "-pix_fmt", "yuv1080p",
     "-f", "flv",
     rtmpUrl,
   ]);
